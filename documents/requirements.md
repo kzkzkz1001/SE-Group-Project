@@ -38,8 +38,11 @@ Goals: Wants to save money. Mainly uses the bikes to commute across campus or to
 ## Acceptance Criteria
 
 ### Standard Login Validation
+
 Given: button on the upper right corner:
+
 If not login yet, show “Login/Sign up”
+
     If press ‘login’, let user input email and password
     If press ‘Sign up’, let user input email, password and confirm pass word
         If email has been registered, report to user
