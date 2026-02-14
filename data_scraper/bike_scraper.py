@@ -4,16 +4,14 @@ import os
 import time
 from dotenv import load_dotenv
 
-# 加载环境变量
+# loading enviroment variables
 load_dotenv()
 
-# 配置 API
 JC_KEY = os.getenv("JC_API_KEY")
 STATIONS_URL = f"https://api.jcdecaux.com/vls/v1/stations?contract=dublin&apiKey={JC_KEY}"
 
 
 def get_db_connection():
-    """建立与本地 MySQL 的连接"""
     return mysql.connector.connect(
         host=os.getenv("DB_HOST"),
         user=os.getenv("DB_USER"),
@@ -23,23 +21,22 @@ def get_db_connection():
 
 
 def scrape_bikes():
-    print(f"[{time.strftime('%Y-%m-%d %H:%M:%S')}] 正在爬取都柏林自行车数据...")
+    print(f"[{time.strftime('%Y-%m-%d %H:%M:%S')}] start to scrape bike data...")
     try:
-        # 1. 发送请求
+        # 1. send API request to JCDecaux
         response = requests.get(STATIONS_URL)
         if response.status_code != 200:
-            print(f"API 请求失败: {response.status_code}")
+            print(f"API Request failed: {response.status_code}")
             return
 
         stations_data = response.json()
 
-        # 2. 连接数据库
+        # 2. connect to MySQL and update/insert data
         conn = get_db_connection()
         cursor = conn.cursor()
 
         for station in stations_data:
-            # A. 更新/插入静态站点信息 (station 表)
-            # 使用 ON DUPLICATE KEY UPDATE 确保数据最新且不重复
+            # A. Upsert station static info (station table)
             sql_st = """INSERT INTO station (number, name, address, pos_lat, pos_lng, bike_stands) 
                         VALUES (%s, %s, %s, %s, %s, %s)
                         ON DUPLICATE KEY UPDATE name=%s, address=%s"""
@@ -49,7 +46,7 @@ def scrape_bikes():
                 station['name'], station['address']
             ))
 
-            # B. 插入动态可用性数据 (availability 表)
+            # B. Insert availability data (availability table)
             sql_av = """INSERT INTO availability (number, available_bikes, available_bike_stands, last_update, status) 
                         VALUES (%s, %s, %s, %s, %s)"""
             cursor.execute(sql_av, (
@@ -57,22 +54,21 @@ def scrape_bikes():
                 station['last_update'], station['status']
             ))
 
-        # 提交并关闭
+        # 3. commit and close connection
         conn.commit()
         cursor.close()
         conn.close()
-        print(f"成功更新 {len(stations_data)} 个站点的实时数据。")
+        print(f"Updated {len(stations_data)} stations' real-time data.")
 
     except Exception as e:
-        print(f"运行出错: {e}")
+        print(f"Error during scraping: {e}")
 
 
 if __name__ == "__main__":
-    # 第一次运行测试
+    # First run to populate the database
     scrape_bikes()
 
-    # 如果你想让它每5分钟自动运行，取消下面三行的注释：
-    # print("程序已进入持续监控模式，每 5 分钟抓取一次...")
-    # while True:
-    #     time.sleep(300)
-    #     scrape_bikes()
+    print("Scraping will run every 5 minutes...")
+    while True:
+        time.sleep(300)
+        scrape_bikes()
