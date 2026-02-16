@@ -1,0 +1,7 @@
+weather_config.py
+*.log
+weather_data.json
+*.csv
+__pycache__/
+*.pyc
+.DS_Store
