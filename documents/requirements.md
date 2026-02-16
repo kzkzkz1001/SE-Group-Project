@@ -63,14 +63,28 @@ Then the app shall display station icons that are color-coded (e.g., Green for a
 Given the user is viewing station pins on the map,
 When the user taps a specific station icon,
 Then a card shall slide up displaying the station name, number of bikes available, and number of empty docks.
+To start journey using can press start journey from pin selcted to there destination pin.
 #### Return Confirmation Notification
 Given the user has pushed the bike into a dock,
 When the dock locks successfully (Green light active),
 Then the user shall receive a push notification within 30 seconds confirming "Ride Ended: Bike Returned Successfully".
 
-### Product and Payment
-#### Production Selection
-Given the user four tpyes of plan, "one-day", "three-day", "one-week", "monthly-pass"
+### Weather 
+### Weather perdiction
+Given the weather change user can see the current weather before they take a journey
+When weather icon is clicked user can see ther perdicted weather for the next few hours 
+
+### Chatbot
+#### User issue
+Given the user may have questions. Chat bot can generate a set of common questions asked by other users
+and report and problem.
+
+
+
+
+
+
+four tpyes of plan, "one-day", "three-day", "one-week", "monthly-pass"
 When users select a plan, go to the payment page for details input
 Then validating the payment details (here just sitimulate the process)
 
