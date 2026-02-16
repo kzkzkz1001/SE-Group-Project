@@ -76,17 +76,12 @@ When weather icon is clicked user can see ther perdicted weather for the next fe
 
 ### Chatbot
 #### User issue
-Given the user may have questions. Chat bot can generate a set of common questions asked by other users
+Given the user may have questions. 
+Chat bot can generate a set of common questions asked by other users
 and report and problem.
 
 
 
-
-
-
-four tpyes of plan, "one-day", "three-day", "one-week", "monthly-pass"
-When users select a plan, go to the payment page for details input
-Then validating the payment details (here just sitimulate the process)
 
 
 
