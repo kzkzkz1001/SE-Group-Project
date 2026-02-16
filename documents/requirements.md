@@ -54,6 +54,26 @@ If not login yet, show “Login/Sign up”
             If they provide a valid email and create a password
                 Then the system shall create their account and display a "Welcome" onboarding message.
             Else let user reenter
+### Mapping, Rental and Return
+#### Real-time Station Availability
+Given the user has granted GPS permissions and is on the map,
+When the map loads,
+Then the app shall display station icons that are color-coded (e.g., Green for available bikes, Grey for empty) to show status at a glance.
+#### Checking Station Details
+Given the user is viewing station pins on the map,
+When the user taps a specific station icon,
+Then a card shall slide up displaying the station name, number of bikes available, and number of empty docks.
+#### Return Confirmation Notification
+Given the user has pushed the bike into a dock,
+When the dock locks successfully (Green light active),
+Then the user shall receive a push notification within 30 seconds confirming "Ride Ended: Bike Returned Successfully".
+
+### Product and Payment
+#### Production Selection
+Given the user four tpyes of plan, "one-day", "three-day", "one-week", "monthly-pass"
+When users select a plan, go to the payment page for details input
+Then validating the payment details (here just sitimulate the process)
+
 
 
         
