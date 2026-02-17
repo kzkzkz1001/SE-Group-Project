@@ -16,14 +16,14 @@ There are three main types of users for this application. The first one is local
 ### 2. Map Home & Weather Widget
 #### 2.1 Interactive Map: Displays Dublin map centered on the user's current location.
 #### 2.2 Station Pins: Color-coded pins (Green = Bikes Available, Grey = Empty/No Bikes).
-#### 2.3 Station Details: Clicking a pin reveals "Bikes Available" and "Empty Docks".
-#### 2.4 Weather Widget: A floating overlay on the map displaying current temperature and weather icon (Sun/Rain).
+#### 2.3 Station Details: Clicking a pin reveals "Bikes Available" and "Empty Docks" also bike analytics of the bike avaiblity throught the week based on the sataion day and time.
+#### 2.4 Weather Widget: A floating overlay on the map displaying current temperature and weather icon (Sun/Rain), predicted weather for next few hours.
 #### 2.5 Rain Alert: A prominent warning banner appears if rain is forecast: "Rain expected, cycle safely!"
 
-### 3. Product Choice & Payment
-#### 3.1 Product Selection: Choose "One-Day Pass (€5)" or "Three-Day Pass (€10)" or "Monthly Ticket (€40)" and "Annually Ticket Monthly Ticket(€400)".
-#### 3.2 Simulated Payment: Mock form for credit card input (Card Number, CVC).
-#### 3.3 Transaction : Updating users' permission.
+### 3. chat bot 
+#### 3.1 using a chat bot LLM to help user if they have an issue
+#### 3.2 Generate a set of common questions
+#### 
 
 ### 4. User Profile / Dashboard
 #### 4.1 Update information (e.g. email, passward etc.)
