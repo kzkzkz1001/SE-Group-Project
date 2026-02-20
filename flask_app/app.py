@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 from api.bike_api import bike_api_bp
 from api.db_station_api import db_station_api_bp
 from api.db_bike_api import db_bike_api_bp
+from api.weather_api import weather_bp
 
 load_dotenv()
 
@@ -14,8 +15,7 @@ app = Flask(__name__)
 app.register_blueprint(bike_api_bp)
 app.register_blueprint(db_station_api_bp)
 app.register_blueprint(db_bike_api_bp)
-
-
+app.register_blueprint(weather_bp)
 @app.route('/')
 def home():
     return "Dublin Bikes Flask Server is Running!"
