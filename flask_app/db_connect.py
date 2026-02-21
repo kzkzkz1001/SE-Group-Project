@@ -11,7 +11,7 @@ def get_db_connection():
 
     # 调试用：如果终端打印出 "Password is None"，说明没读到 .env
     if db_pass is None:
-        print("❌ DEBUG: .env file NOT loaded or DB_PASS is missing!")
+        print(" DEBUG: .env file NOT loaded or DB_PASS is missing!")
 
     return mysql.connector.connect(
         host=os.getenv("DB_HOST"),
