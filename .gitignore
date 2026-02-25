@@ -1,8 +1,5 @@
-weather_config.py
-*.log
-weather_data.json
-*.csv
+flask_app/venv/
+flask_app/.env
 __pycache__/
 *.pyc
 .DS_Store
-.env
